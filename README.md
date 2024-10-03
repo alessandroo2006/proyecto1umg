@@ -1,35 +1,38 @@
 #include <iostream>
 #include <vector>
-#include <string>
 #include <iomanip>
+#include <string>
 #include <ctime>
+#include <sstream>
+
 
 using namespace std;
 
+//registro de estudiantes
 struct Estudiante {
-    int codigo;
-    string nombres;
-    string apellidos;
-    string carrera;
-    string direccion;
-    string departamento;
-    string municipio;
-    string aldea;
-    string telefonoPersonal;
-    string telefonoCasa;
-    string telefonoEmergencia;
-    string fechaNacimiento;
-    int edad;
-    int anioIngreso;   
-    string correo;
+	int codigodeestudiante ;
+	string nombres;
+	string apellidos;
+	string carrera;
+	string direccion;
+	string departamento;
+	string municipio;
+	string aldea;
+	string telefono;
+	string telefonopersonal;
+	string telefonodecasa;
+	string telefonodeemergencia;
+	string fechadenacimiento;
+	string edad;
+	
+	string correoelectronico;
+	
 };
-
-struct Curso {
-    string codigoCurso;
-    string nombreCurso;
-    int semestre;
-    int creditos;
-    vector<double> notasParciales;
-    double notaFinal;
-    string estado;
-};
+struct curso{
+	string codigodecurso;
+	string nombredecurso;
+	int semmestre;
+	vector < double > notasdeparciales;
+	double notafinal;
+	string estado;
+	
