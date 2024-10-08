@@ -8,31 +8,55 @@
 
 using namespace std;
 
-//registro de estudiantes
-struct Estudiante {
-	int codigodeestudiante ;
-	string nombres;
-	string apellidos;
-	string carrera;
-	string direccion;
-	string departamento;
-	string municipio;
-	string aldea;
-	string telefono;
-	string telefonopersonal;
-	string telefonodecasa;
-	string telefonodeemergencia;
-	string fechadenacimiento;
-	string edad;
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+//No.1 Registro de estudiantes            Andy 
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
-	string correoelectronico;
-	
-};
-struct curso{
-	string codigodecurso;
-	string nombredecurso;
-	int semmestre;
-	vector < double > notasdeparciales;
-	double notafinal;
-	string estado;
-	
+
+
+//No.2 asignacion de curso                 mario o joel    Ustedes debaten cual hacen 
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+No.3 Control de notas      Alessandro 
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+//No.4 Reportes academicos           mario o joel       ustedes debaten cual hacen 
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+//No.5 Salir       Alessandro y andy
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
