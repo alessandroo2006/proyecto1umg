@@ -9,13 +9,163 @@
 using namespace std;
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
 //No.1 Registro de estudiantes            Andy 
 
+class Estudiante {
+private:
+    int codigoEstudiante;
+    string nombres;
+    string apellidos;
+    string carrera;
+    string departamento;
+    string municipio;
+    string aldea;
+    string telefonoPersonal;
+    string telefonoCasa;
+    string telefonoEmergencia;
+    string fechaNacimiento;
+    int edad;
+    int anioIngreso;
+    string correoElectronico;
 
+    static int contadorCodigo; 
+
+public:
+	
+    Estudiante(const string& nombres, const string& apellidos, const string& carrera, const string& departamento,
+               const string& municipio, const string& aldea, const string& telefonoPersonal, const string& telefonoCasa,
+               const string& telefonoEmergencia, const string& fechaNacimiento, int anioIngreso, const string& correoElectronico)
+    {
+        this->codigoEstudiante = ++contadorCodigo;
+        this->nombres = nombres;
+        this->apellidos = apellidos;
+        this->carrera = carrera;
+        this->departamento = departamento;
+        this->municipio = municipio;
+        this->aldea = aldea;
+        this->telefonoPersonal = telefonoPersonal;
+        this->telefonoCasa = telefonoCasa;
+        this->telefonoEmergencia = telefonoEmergencia;
+        this->fechaNacimiento = fechaNacimiento;
+        this->anioIngreso = anioIngreso;
+        this->correoElectronico = correoElectronico;
+        this->edad = calcularEdad(fechaNacimiento);
+    }
+
+    int calcularEdad(const string& fechaNacimiento) {
+        int dia, mes, anio;
+        sscanf(fechaNacimiento.c_str(), "%d %*s %d", &dia, &anio);
+
+        time_t t = time(0);   
+        struct tm* now = localtime(&t);
+        int anioActual = now->tm_year + 1900;
+
+        return anioActual - anio;
+    }
+
+   
+    void mostrarDatos() const {
+        cout<< "Código de Estudiante: " << codigoEstudiante <<endl;
+        cout<< "Nombres: " <<nombres <<endl;
+        cout<< "Apellidos: " <<apellidos <<endl;
+        cout<< "Carrera: " <<carrera <<endl;
+        cout<< "Dirección: " << departamento << ", " << municipio << (aldea.empty() ? "" : ", Aldea: " + aldea) <<endl;
+        cout<< "Teléfono Personal: " << telefonoPersonal <<endl;
+        cout<< "Teléfono Casa: " << telefonoCasa <<endl;
+        cout<< "Teléfono Emergencia: " << telefonoEmergencia <<endl;
+        cout<< "Fecha de Nacimiento: " << fechaNacimiento <<endl;
+        cout<< "Edad: " <<edad << " años" <<endl;
+        cout<< "Año de Ingreso: " << anioIngreso <<endl;
+        cout<< "Correo Electrónico: " << correoElectronico <<endl;
+    }
+};
+
+int Estudiante::contadorCodigo = 0;
+
+int main() {
+    vector<Estudiante> estudiantes;
+    string nombres, apellidos, carrera, departamento, municipio, aldea, telefonoPersonal, telefonoCasa, telefonoEmergencia, fechaNacimiento, correoElectronico;
+    int anioIngreso;
+
+    vector<std::string> carreras = {"Ingeniería", "Administración", "Derecho"};
+    vector<std::string> departamentos = {"Guatemala", "Escuintla", "Chimaltenango"};
+    vector<std::string> municipios = {"Municipio 1", "Municipio 2", "Municipio 3"};
+
+    while (true) {
+        cout << "\nIngrese los datos del estudiante (o escriba 'salir' para terminar):" <<endl;
+
+        cout << "Nombres: ";
+        getline(std::cin, nombres);
+        if (nombres == "salir") break;
+
+        cout << "Apellidos: ";
+        getline(std::cin, apellidos);
+
+        cout << "Seleccione la carrera: " <<endl;
+        for (size_t i = 0; i < carreras.size(); ++i) {
+            cout << i + 1 << ". " << carreras[i] <<endl;
+        }
+        int seleccionCarrera;
+        cin >> seleccionCarrera;
+        if (seleccionCarrera < 1 || seleccionCarrera > carreras.size()) {
+            cerr << "Selección inválida. Intente de nuevo." <<endl;
+            continue;
+        }
+        carrera = carreras[seleccionCarrera - 1];
+        cin.ignore();
+
+        cout << "Seleccione el departamento: " <<endl;
+        for (size_t i = 0; i < departamentos.size(); ++i) {
+            cout << i + 1 << ". " << departamentos[i] <<endl;
+        }
+        int seleccionDepto;
+        cin >> seleccionDepto;
+        if (seleccionDepto < 1 || seleccionDepto > departamentos.size()) {
+            cerr << "Selección inválida. Intente de nuevo." <<endl;
+            continue;
+        }
+        departamento = departamentos[seleccionDepto - 1];
+        cin.ignore();
+
+        cout << "Seleccione el municipio: " <<endl;
+        for (size_t i = 0; i < municipios.size(); ++i) {
+            cout << i + 1 << ". " << municipios[i] <<endl;
+        }
+        int seleccionMunicipio;
+        cin >> seleccionMunicipio;
+        if (seleccionMunicipio < 1 || seleccionMunicipio > municipios.size()) {
+            cerr << "Selección inválida. Intente de nuevo." <<endl;
+            continue;
+        }
+        municipio = municipios[seleccionMunicipio - 1];
+        cin.ignore();
+
+        cout << "Aldea (opcional, presione Enter si no aplica): ";
+        getline(cin, aldea);
+
+        cout << "Teléfono Personal: ";
+        getline(cin, telefonoPersonal);
+
+        cout << "Teléfono Casa: ";
+        getline(cin, telefonoCasa);
+
+        cout << "Teléfono Emergencia: ";
+        getline(cin, telefonoEmergencia);
+
+        cout << "Fecha de Nacimiento (ejemplo: 26 diciembre 2000): ";
+        getline(cin, fechaNacimiento);
+
+        cout << "Año de Ingreso a la Universidad: ";
+        cin >> anioIngreso;
+        cin.ignore();
+
+        cout << "Correo Electrónico: ";
+        getline(cin, correoElectronico);
+
+        estudiantes.emplace_back(nombres, apellidos, carrera, departamento, municipio, aldea, telefonoPersonal, telefonoCasa, telefonoEmergencia, fechaNacimiento, anioIngreso, correoElectronico);
+    }
+
+    cout << "\nEstudiantes Registrados:\n";
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
