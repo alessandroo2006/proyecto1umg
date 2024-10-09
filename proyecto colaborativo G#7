@@ -87,9 +87,9 @@ int main() {
     string nombres, apellidos, carrera, departamento, municipio, aldea, telefonoPersonal, telefonoCasa, telefonoEmergencia, fechaNacimiento, correoElectronico;
     int anioIngreso;
 
-    vector<std::string> carreras = {"Ingeniería", "Administración", "Derecho"};
-    vector<std::string> departamentos = {"Guatemala", "Escuintla", "Chimaltenango"};
-    vector<std::string> municipios = {"Municipio 1", "Municipio 2", "Municipio 3"};
+    vector<string> carreras = {"Ingeniería", "Administración", "Derecho"};
+    vector<string> departamentos = {"Guatemala", "Escuintla", "Chimaltenango"};
+    vector<string> municipios = {"Municipio 1", "Municipio 2", "Municipio 3"};
 
     while (true) {
         cout << "\nIngrese los datos del estudiante (o escriba 'salir' para terminar):" <<endl;
@@ -99,7 +99,7 @@ int main() {
         if (nombres == "salir") break;
 
         cout << "Apellidos: ";
-        getline(std::cin, apellidos);
+        getline(cin, apellidos);
 
         cout << "Seleccione la carrera: " <<endl;
         for (size_t i = 0; i < carreras.size(); ++i) {
