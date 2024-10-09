@@ -56,7 +56,20 @@ No.3 Control de notas      Alessandro
 //No.5 Salir       Alessandro y andy
 
 
+void salir() {
+    cout << "Saliendo del programa..." << endl;
+    exit(0); // Termina el programa con código de salida 0
+}
 
+int main() {
+    // Código del programa
+    cout << "Ejecutando el programa..." <<endl;
+
+    // Llama a la función para salir
+    salir();
+
+    return 0; // Esto nunca se alcanzará porque exit() termina el programa
+}
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
