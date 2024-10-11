@@ -1,1 +1,102 @@
+//pongan aqui las librerias........................
 
+
+
+
+
+
+
+class SistemaUniversitario {
+private:
+    vector<Estudiante> estudiantes;
+    vector<Curso> cursos;
+    vector<Nota> notas;
+
+    int calcularEdad(const string& fechaNacimiento) {
+        struct tm tm = {};
+        stringstream ss(fechaNacimiento);
+        int dia, anio;
+        string mes;
+        ss >> dia >> mes >> anio;
+
+        if (mes == "enero") tm.tm_mon = 0;
+        else if (mes == "febrero") tm.tm_mon = 1;
+        else if (mes == "marzo") tm.tm_mon = 2;
+        else if (mes == "abril") tm.tm_mon = 3;
+        else if (mes == "mayo") tm.tm_mon = 4;
+        else if (mes == "junio") tm.tm_mon = 5;
+        else if (mes == "julio") tm.tm_mon = 6;
+        else if (mes == "agosto") tm.tm_mon = 7;
+        else if (mes == "septiembre") tm.tm_mon = 8;
+        else if (mes == "octubre") tm.tm_mon = 9;
+        else if (mes == "noviembre") tm.tm_mon = 10;
+        else if (mes == "diciembre") tm.tm_mon = 11;
+
+        tm.tm_mday = dia;
+        tm.tm_year = anio - 1900; // Años desde 1900
+        time_t ahora = time(0);
+        time_t fechaNac = mktime(&tm);
+        double edadEnSegundos = difftime(ahora, fechaNac);
+        return static_cast<int>(edadEnSegundos / (365 * 24 * 60 * 60)); 
+    }
+
+public:
+    void registrarEstudiante() {
+        Estudiante nuevoEstudiante;
+        nuevoEstudiante.codigo = estudiantes.size() + 1; 
+        cout << "Ingrese los nombres del estudiante: ";
+        cin.ignore();
+        getline(cin, nuevoEstudiante.nombres);
+        cout << "Ingrese los apellidos del estudiante: ";
+        getline(cin, nuevoEstudiante.apellidos);
+        
+        cout << "Seleccione la carrera (1. Ingeniería, 2. Administración, 3. Derecho): ";
+        int opcionCarrera;
+        cin >> opcionCarrera;
+        switch (opcionCarrera) {
+            case 1: nuevoEstudiante.carrera = "Ingeniería"; break;
+            case 2: nuevoEstudiante.carrera = "Administración"; break;
+            case 3: nuevoEstudiante.carrera = "Derecho"; break;
+            default: nuevoEstudiante.carrera = "No especificada"; break;
+        }
+
+        cout << "Ingrese la dirección: ";
+        cin.ignore(); 
+        getline(cin, nuevoEstudiante.direccion);
+        
+        cout << "Ingrese el departamento: ";
+        getline(cin, nuevoEstudiante.departamento);
+        
+        cout << "Ingrese el municipio: ";
+        getline(cin, nuevoEstudiante.municipio);
+        
+        cout << "Ingrese la aldea (opcional): ";
+        getline(cin, nuevoEstudiante.aldea);
+        
+        cout << "Ingrese el teléfono personal: ";
+        getline(cin, nuevoEstudiante.telefonoPersonal);
+        
+        cout << "Ingrese el teléfono de casa: ";
+        getline(cin, nuevoEstudiante.telefonoCasa);
+        
+        cout << "Ingrese el teléfono de emergencia: ";
+        getline(cin, nuevoEstudiante.telefonoEmergencia);
+        
+        cout << "Ingrese la fecha de nacimiento (ejemplo: 26 diciembre 2024): ";
+        getline(cin, nuevoEstudiante.fechaNacimiento);
+        nuevoEstudiante.edad = calcularEdad(nuevoEstudiante.fechaNacimiento);
+        
+        if (nuevoEstudiante.edad < 0) {
+            cout << "No se pudo calcular la edad. Registro cancelado." << endl;
+            return;
+        }
+        cout << "Ingrese el año de ingreso a la universidad: ";
+        cin >> nuevoEstudiante.anioIngreso;
+        
+        cout << "Ingrese el correo electrónico: ";
+        cin.ignore(); 
+        getline(cin, nuevoEstudiante.correo);
+
+        estudiantes.push_back(nuevoEstudiante);
+        cout << "Estudiante registrado con éxito. Código: " << nuevoEstudiante.codigo << endl;
+    }
