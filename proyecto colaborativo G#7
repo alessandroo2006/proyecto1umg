@@ -173,7 +173,95 @@ int main() {
 
 
 //No.2 asignacion de curso                 mario o joel    Ustedes debaten cual hacen 
+#include <iostream>
+#include <string>
+#include <map>
+#include <vector>
 
+using namespace std;
+
+struct Curso {
+    string codigoCurso;
+    string nombreCurso;
+    int creditos;
+    string semestreDisponible;
+};
+
+struct Estudiante {
+    string codigoEstudiante;
+    string nombreEstudiante;
+};
+
+struct AsignacionCurso {
+    string codigoEstudiante;
+    string codigoCurso;
+    string semestre;
+    int creditos;
+};
+
+map<string, Curso> cursos;  
+map<string, Estudiante> estudiantes;  
+vector<AsignacionCurso> asignaciones;  
+
+void agregarCurso(string codigo, string nombre, int creditos, string semestre) {
+    Curso nuevoCurso = {codigo, nombre, creditos, semestre};
+    cursos[codigo] = nuevoCurso;
+}
+
+void agregarEstudiante(string codigo, string nombre) {
+    Estudiante nuevoEstudiante = {codigo, nombre};
+    estudiantes[codigo] = nuevoEstudiante;
+}
+
+void asignarCurso(string codigoEstudiante, string codigoCurso, string semestreSeleccionado) {
+    if (cursos.find(codigoCurso) == cursos.end()) {
+        cout << "Error: El curso no existe.\n";
+        return;
+    }
+    if (estudiantes.find(codigoEstudiante) == estudiantes.end()) {
+        cout << "Error: El estudiante no existe.\n";
+        return;
+    }
+
+    Curso curso = cursos[codigoCurso];
+    
+    if (curso.semestreDisponible != semestreSeleccionado) {
+        cout << "Error: El curso no está disponible en el semestre seleccionado.\n";
+        return;
+    }
+    AsignacionCurso nuevaAsignacion = {codigoEstudiante, codigoCurso, semestreSeleccionado, curso.creditos};
+    asignaciones.push_back(nuevaAsignacion);
+    
+    cout << "Curso asignado exitosamente al estudiante " << estudiantes[codigoEstudiante].nombreEstudiante << ".\n";
+}
+
+void mostrarAsignaciones(string codigoEstudiante) {
+    cout << "Asignaciones para el estudiante " << estudiantes[codigoEstudiante].nombreEstudiante << ":\n";
+    for (const auto& asignacion : asignaciones) {
+        if (asignacion.codigoEstudiante == codigoEstudiante) {
+            cout << "Curso: " << cursos[asignacion.codigoCurso].nombreCurso 
+                 << ", Semestre: " << asignacion.semestre 
+                 << ", Créditos: " << asignacion.creditos << "\n";
+        }
+    }
+}
+
+int main() {
+    agregarCurso("C001", "Matemáticas", 4, "2024-1");
+    agregarCurso("C002", "Programación", 5, "2024-1");
+    agregarCurso("C003", "Física", 3, "2024-2");
+
+    agregarEstudiante("E001", "Juan Perez");
+    agregarEstudiante("E002", "Ana Gomez");
+
+    asignarCurso("E001", "C001", "2024-1");
+    asignarCurso("E001", "C002", "2024-1");
+    asignarCurso("E002", "C003", "2024-2");
+
+    mostrarAsignaciones("E001");
+
+    return 0;
+}
 
 
 
