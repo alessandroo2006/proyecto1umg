@@ -380,14 +380,86 @@ int main() {;
 
     cout << "\nResultados:\n";
     mostrarResultados(estudiantes);
+struct Estudiante {
+    int codigo;
+    string nombre, apellido, carrera;
+    int anio_ingreso;
+    
+    Estudiante(int cod, string nom, string ape, string car, int ingreso) :
+        codigo(cod), nombre(nom), apellido(ape), carrera(car), anio_ingreso(ingreso) {}
+};
+
+struct Curso {
+    string codigo_curso, nombre_curso;
+    int codigo_estudiante;
+    float nota_final;
+    
+    Curso(string codCur, string nomCur, int codEst, float nota) :
+        codigo_curso(codCur), nombre_curso(nomCur), codigo_estudiante(codEst), nota_final(nota) {}
+};
+
+vector<Estudiante> estudiantes;
+vector<Curso> cursos;
+
+void reporteDatosGenerales() {
+    cout << "\n===== Reporte de Datos Generales de los Estudiantes =====\n";
+    for (const auto& estudiante : estudiantes) {
+        cout << "Código: " << estudiante.codigo << " - Nombre: " << estudiante.nombre << " " << estudiante.apellido 
+             << " - Carrera: " << estudiante.carrera << " - Año de ingreso: " << estudiante.anio_ingreso << endl;
+    }
+}
+
+void reporteAsignacionCursos() {
+    cout << "\n===== Reporte de Asignación de Cursos =====\n";
+    for (const auto& estudiante : estudiantes) {
+        cout << "Estudiante: " << estudiante.codigo << " - " << estudiante.nombre << " " << estudiante.apellido << endl;
+        for (const auto& curso : cursos) {
+            if (curso.codigo_estudiante == estudiante.codigo) {
+                cout << "   Curso: " << curso.nombre_curso << " (Código: " << curso.codigo_curso << ")" << endl;
+            }
+        }
+    }
+}
+
+void reporteNotas() {
+    cout << "\n===== Reporte de Notas =====\n";
+    for (const auto& estudiante : estudiantes) {
+        cout << "Estudiante: " << estudiante.codigo << " - " << estudiante.nombre << " " << estudiante.apellido << endl;
+        for (const auto& curso : cursos) {
+            if (curso.codigo_estudiante == estudiante.codigo) {
+                cout << "   Curso: " << curso.nombre_curso << " - Nota Final: " << curso.nota_final << endl;
+            }
+        }
+    }
+}
+
+void reporteRendimientoAcademico() {
+    cout << "\n===== Reporte de Rendimiento Académico =====\n";
+    for (const auto& estudiante : estudiantes) {
+        float suma_notas = 0;
+        int numero_cursos = 0;
+        cout << "Estudiante: " << estudiante.codigo << " - " << estudiante.nombre << " " << estudiante.apellido << endl;
+        for (const auto& curso : cursos) {
+            if (curso.codigo_estudiante == estudiante.codigo) {
+                suma_notas += curso.nota_final;
+                numero_cursos++;
+            }
+        }
+        if (numero_cursos > 0) {
+            float promedio = suma_notas / numero_cursos;
+            cout << "   Promedio General: " << promedio << endl;
+            cout << "   Estado: " << (promedio >= 60 ? "Aprobado" : "Reprobado") << endl;
+        } else {
+            cout << "   No tiene cursos asignados.\n";
+        }
+    }
+}
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
-//No.4 Reportes academicos           mario o joel       ustedes debaten cual hacen 
 
 
 
