@@ -31,7 +31,7 @@ private:
     static int contadorCodigo; 
 
 public:
-	
+ 
     Estudiante(const string& nombres, const string& apellidos, const string& carrera, const string& departamento,
                const string& municipio, const string& aldea, const string& telefonoPersonal, const string& telefonoCasa,
                const string& telefonoEmergencia, const string& fechaNacimiento, int anioIngreso, const string& correoElectronico)
@@ -87,9 +87,51 @@ int main() {
     string nombres, apellidos, carrera, departamento, municipio, aldea, telefonoPersonal, telefonoCasa, telefonoEmergencia, fechaNacimiento, correoElectronico;
     int anioIngreso;
 
-    vector<string> carreras = {"Ingeniería", "Administración", "Derecho"};
-    vector<string> departamentos = {"Guatemala", "Escuintla", "Chimaltenango"};
-    vector<string> municipios = {"Municipio 1", "Municipio 2", "Municipio 3"};
+    vector<string> carreras;
+carreras.push_back("Ingeniería en Sistemas");
+    carreras.push_back("Ingeniería Civil");
+    carreras.push_back("Arquitectura");
+    carreras.push_back("Administración de Empresas");
+    carreras.push_back("Contaduría Pública y Auditoría");
+    carreras.push_back("Psicología");
+    carreras.push_back("Derecho");
+    carreras.push_back("Educación Inicial");
+    carreras.push_back("Mercadotecnia");
+    carreras.push_back("Ingeniería Electrónica");
+    carreras.push_back("Ingeniería Industrial");
+    carreras.push_back("Técnico en Diseño Gráfico");
+
+    vector<string> departamentos ;
+   departamentos.push_back("Alta Verapaz");
+    departamentos.push_back("Baja Verapaz");
+    departamentos.push_back("Chimaltenango");
+    departamentos.push_back("Chiquimula");
+    departamentos.push_back("Escuintla");
+    departamentos.push_back("Guatemala");
+    departamentos.push_back("Huehuetenango");
+    departamentos.push_back("Izabal");
+    departamentos.push_back("Jalapa");
+    departamentos.push_back("Jiménez");
+	departamentos.push_back("La Paz");
+    departamentos.push_back("Quetzaltenango");
+    departamentos.push_back("Quiché");
+    departamentos.push_back("Retalhuleu");
+    departamentos.push_back("Sacatepéquez");
+    departamentos.push_back("San Marcos");
+    departamentos.push_back("Santa Rosa");
+    departamentos.push_back("Solalá");
+    departamentos.push_back("Suchitepéquez");
+    departamentos.push_back("Totonicapán");
+    departamentos.push_back("Zacapa");
+
+    vector<string> municipios ;
+    municipios.push_back("Municipio 1");
+    municipios.push_back("Municipio 2");
+    municipios.push_back("Municipio 3");
+    
+   
+    
+    
 
     while (true) {
         cout << "\nIngrese los datos del estudiante (o escriba 'salir' para terminar):" <<endl;
@@ -161,12 +203,9 @@ int main() {
 
         cout << "Correo Electrónico: ";
         getline(cin, correoElectronico);
-
-        estudiantes.emplace_back(nombres, apellidos, carrera, departamento, municipio, aldea, telefonoPersonal, telefonoCasa, telefonoEmergencia, fechaNacimiento, anioIngreso, correoElectronico);
     }
 
-    cout << "\nEstudiantes Registrados:\n";
-
+    cout << "\nEstudiantes Registrados:\n"; }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
