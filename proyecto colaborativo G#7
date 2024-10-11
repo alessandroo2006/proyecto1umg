@@ -310,6 +310,21 @@ int main() {
 
 No.3 Control de notas      Alessandro 
 
+struct Estudiante {;
+	// los miembros de la estructura
+	string Estudiante;
+	string estudiante;
+    string nombre;
+    string codigo;
+    string curso;
+    vector<float> notas;  // Vector para almacenar las notas
+    float promedio; // Para almacenar el promedio
+    string estado;  // Para almacenar el estado
+    
+    
+    
+};
+
 void calcularPromedio(Estudiante &estudiante) {
     float suma = 0;
     for (size_t i = 0; i < estudiante.notas.size(); ++i) {
@@ -335,6 +350,57 @@ void mostrarResultados(const vector<Estudiante> &estudiantes)  { ;
              << setw(10) << left << estudiante.estado << endl;
     }
 
+
+
+struct Estudiante {;
+    string nombre;
+    string codigo;
+    string curso;
+    vector<float> notas;
+    float promedio;
+    string estado;
+};
+
+
+
+    vector<Estudiante> estudiantes;
+    int numEstudiantes;
+
+    cout << "Ingrese el número de estudiantes: ";
+    cin >> numEstudiantes;
+
+    for (int i = 0; i < numEstudiantes; ++i) {
+        Estudiante estudiante;
+        int numNotas;
+
+        cout << "\nIngrese el nombre del estudiante: ";
+        cin >> estudiante.nombre;
+        cout << "Ingrese el código del estudiante: ";
+        cin >> estudiante.codigo;
+        cout << "Ingrese el curso del estudiante: ";
+        cin >> estudiante.curso;
+
+        cout << "Ingrese el número de notas: ";
+        cin >> numNotas;
+
+        estudiante.notas.resize(numNotas);
+        for (int j = 0; j < numNotas; ++j) {
+            cout << "Ingrese la nota " << (j + 1) << ": ";
+            cin >> estudiante.notas[j];
+        }
+
+        calcularPromedio(estudiante);
+        estudiantes.push_back(estudiante);
+    }
+
+    cout << "\nResultados:\n";
+    mostrarResultados(estudiantes);
+
+
+
+
+
+joel_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
 
 struct Estudiante {
