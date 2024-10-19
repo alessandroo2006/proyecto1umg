@@ -191,7 +191,99 @@ void asignarCurso() {
         cout << "Nota registrada con éxito." << endl;
     }
 
+void generarReportes() {
+        cout << "Reportes Académicos:" << endl;
 
+        cout << "\nReporte de Datos Generales de los Estudiantes:" << endl;
+        for (size_t i = 0; i < estudiantes.size(); i++) {
+            const Estudiante& est = estudiantes[i];
+            cout << "Estudiante: " << est.nombres << " " << est.apellidos
+                 << " (Código: " << est.codigo << ", Carrera: " << est.carrera << ")" << endl;
+            cout << "Edad: " << est.edad << ", Correo: " << est.correo << endl;
+            cout << "Teléfono Personal: " << est.telefonoPersonal << endl;
+        }
+
+        cout << "\nReporte de Asignación de Cursos:" << endl;
+        for (size_t i = 0; i < cursos.size(); i++) {
+            const Curso& curso = cursos[i];
+            cout << "Curso: " << curso.nombreCurso << " (Código: " << curso.codigoCurso
+                 << ", Estudiante ID: " << curso.idEstudiante
+                 << ", Semestre: " << curso.semestre << ", Créditos: " << curso.creditos << ")" << endl;
+        }
+
+        cout << "\nReporte de Notas:" << endl;
+        for (size_t i = 0; i < notas.size(); i++) {
+            const Nota& nota = notas[i];
+            cout << "Estudiante ID: " << nota.idEstudiante << ", Curso: " << nota.cursoNombre
+                 << ", Nota Parcial 1: " << nota.notaParcial1
+                 << ", Nota Parcial 2: " << nota.notaParcial2
+                 << ", Nota Final: " << fixed << setprecision(2) << nota.notaFinal
+                 << ", Estado: " << (nota.aprobado ? "Aprobado" : "Reprobado") << endl;
+        }
+
+        cout << "\nReporte de Rendimiento Académico:" << endl;
+        for (size_t i = 0; i < estudiantes.size(); i++) {
+            const Estudiante& est = estudiantes[i];
+            float promedio = 0;
+            int numCursos = 0;
+            int cursosAprobados = 0;
+            for (size_t j = 0; j < notas.size(); j++) {
+                const Nota& nota = notas[j];
+                if (nota.idEstudiante == est.codigo) {
+                    promedio += nota.notaFinal;
+                    numCursos++;
+                    if (nota.aprobado) {
+                        cursosAprobados++;
+                    }
+                }
+            }
+            if (numCursos > 0) {
+                promedio /= numCursos; // Calcular promedio
+                cout << "Estudiante: " << est.nombres << " " << est.apellidos
+                     << " - Promedio General: " << fixed << setprecision(2) << promedio
+                     << ", Cursos Aprobados: " << cursosAprobados << ", Cursos Reprobados: " << (numCursos - cursosAprobados) << endl;
+            }
+        }
+    }
+};
+
+int main() {
+    SistemaUniversitario sistema;
+    int opcion;
+
+    do {
+        cout << "\nSistema de Registro Universitario" << endl;
+        cout << "1. Registro de Estudiantes" << endl;
+        cout << "2. Asignación de Cursos" << endl;
+        cout << "3. Control de Notas" << endl;
+        cout << "4. Reportes Académicos" << endl;
+        cout << "5. Salir" << endl;
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                sistema.registrarEstudiante();
+                break;
+            case 2:
+                sistema.asignarCurso();
+                break;
+            case 3:
+                sistema.registrarNota();
+                break;
+            case 4:
+                sistema.generarReportes();
+                break;
+            case 5:
+                cout << "Saliendo del sistema..." << endl;
+                break;
+            default:
+                cout << "Opción no válida, por favor intente de nuevo." << endl;
+        }
+    } while (opcion != 5);
+
+    return 0;
+}
 
 
 
