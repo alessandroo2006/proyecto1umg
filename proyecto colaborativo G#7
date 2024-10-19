@@ -139,7 +139,28 @@ public:
         cout << "Estudiante registrado con éxito. Código: " << nuevoEstudiante.codigo << endl;
     }
 
-
+void asignarCurso() {
+        Curso nuevoCurso;
+        cout << "Ingrese el código del curso: ";
+        cin >> nuevoCurso.codigoCurso;
+        cout << "Ingrese el nombre del curso: ";
+        cin.ignore(); 
+        getline(cin, nuevoCurso.nombreCurso);
+        
+        cout << "Ingrese el ID del estudiante: ";
+        cin >> nuevoCurso.idEstudiante;
+        
+        cout << "Seleccione el semestre (1. Primer Semestre, 2. Segundo Semestre): ";
+        int semestreOpcion;
+        cin >> semestreOpcion;
+        nuevoCurso.semestre = (semestreOpcion == 1) ? "Primer Semestre" : "Segundo Semestre";
+        
+        cout << "Ingrese los créditos (automático según el curso): ";
+        cin >> nuevoCurso.creditos;
+        
+        cursos.push_back(nuevoCurso);
+        cout << "Curso asignado con éxito." << endl;
+    }
 
 
 
