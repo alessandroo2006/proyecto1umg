@@ -1,8 +1,46 @@
-//pongan aqui las librerias........................
+#include <iostream>
+#include <vector>
+#include <string>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
 
+using namespace std;
 
+struct Estudiante {
+    int codigo;               
+    string nombres;
+    string apellidos;
+    string carrera;
+    string direccion;
+    string departamento;
+    string municipio;
+    string aldea;             
+    string telefonoPersonal;
+    string telefonoCasa;
+    string telefonoEmergencia;
+    string fechaNacimiento;    
+    int edad;                 
+    int anioIngreso;
+    string correo;
+};
 
+struct Curso {
+    string codigoCurso;
+    string nombreCurso;
+    int idEstudiante;         
+    string semestre;
+    int creditos;
+};
 
+struct Nota {
+    int idEstudiante;        
+    string cursoNombre;
+    float notaParcial1;
+    float notaParcial2;
+    float notaFinal;
+    bool aprobado;
+};
 
 
 
@@ -100,3 +138,50 @@ public:
         estudiantes.push_back(nuevoEstudiante);
         cout << "Estudiante registrado con éxito. Código: " << nuevoEstudiante.codigo << endl;
     }
+
+
+
+
+
+
+
+
+
+
+
+  void registrarNota() {
+        Nota nuevaNota;
+        cout << "Ingrese el ID del estudiante: ";
+        cin >> nuevaNota.idEstudiante;
+        cout << "Ingrese el nombre del curso: ";
+        cin.ignore(); 
+        getline(cin, nuevaNota.cursoNombre);
+        
+        cout << "Ingrese la nota del primer parcial: ";
+        cin >> nuevaNota.notaParcial1;
+        
+        cout << "Ingrese la nota del segundo parcial: ";
+        cin >> nuevaNota.notaParcial2;
+        
+        nuevaNota.notaFinal = (nuevaNota.notaParcial1 + nuevaNota.notaParcial2) / 2;
+        nuevaNota.aprobado = (nuevaNota.notaFinal >= 60);
+        
+        notas.push_back(nuevaNota);
+        cout << "Nota registrada con éxito." << endl;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
